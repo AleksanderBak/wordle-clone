@@ -1,42 +1,42 @@
 import React from "react";
 import Key from "./Key";
 
-export default function Keyboard() {
+export default function Keyboard(props) {
     return (
         <div className="flex flex-col items-center m-12">
             <div className="flex flex-row">
-                <Key letter={"Q"}/>
-                <Key letter={"W"}/>
-                <Key letter={"E"}/>
-                <Key letter={"R"}/>
-                <Key letter={"T"}/>
-                <Key letter={"Y"}/>
-                <Key letter={"U"}/>
-                <Key letter={"I"}/>
-                <Key letter={"O"}/>
-                <Key letter={"P"}/>
+                <Key letter={"Q"} func={props.func}/>
+                <Key letter={"W"} func={props.func}/>
+                <Key letter={"E"} func={props.func}/>
+                <Key letter={"R"} func={props.func}/>
+                <Key letter={"T"} func={props.func}/>
+                <Key letter={"Y"} func={props.func}/>
+                <Key letter={"U"} func={props.func}/>
+                <Key letter={"I"} func={props.func}/>
+                <Key letter={"O"} func={props.func}/>
+                <Key letter={"P"} func={props.func}/>
             </div>
             <div className="flex flex-row">
-                <Key letter={"A"}/>
-                <Key letter={"S"}/>
-                <Key letter={"D"}/>
-                <Key letter={"F"}/>
-                <Key letter={"G"}/>
-                <Key letter={"H"}/>
-                <Key letter={"J"}/>
-                <Key letter={"K"}/>
-                <Key letter={"L"}/>
+                <Key letter={"A"} func={props.func}/>
+                <Key letter={"S"} func={props.func}/>
+                <Key letter={"D"} func={props.func}/>
+                <Key letter={"F"} func={props.func}/>
+                <Key letter={"G"} func={props.func}/>
+                <Key letter={"H"} func={props.func}/>
+                <Key letter={"J"} func={props.func}/>
+                <Key letter={"K"} func={props.func}/>
+                <Key letter={"L"} func={props.func}/>
             </div>
             <div className="flex flex-row">
-                <Key letter={"Enter"}/>
-                <Key letter={"Z"}/>
-                <Key letter={"X"}/>
-                <Key letter={"C"}/>
-                <Key letter={"V"}/>
-                <Key letter={"B"}/>
-                <Key letter={"N"}/>
-                <Key letter={"M"}/>
-                <Key letter={"Backspace"}/>
+                <Key letter={"Enter"} func={props.func}/>
+                <Key letter={"Z"} func={props.func}/>
+                <Key letter={"X"} func={props.func}/>
+                <Key letter={"C"} func={props.func}/>
+                <Key letter={"V"} func={props.func}/>
+                <Key letter={"B"} func={props.func}/>
+                <Key letter={"N"} func={props.func}/>
+                <Key letter={"M"} func={props.func}/>
+                <Key letter={"Backspace"} func={props.func}/>
             </div>
         </div>
     )
