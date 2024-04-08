@@ -4,24 +4,52 @@ import Game from './components/Game.jsx'
 import Keyboard from './components/Keyboard.jsx'
 
 function App() {
-  const [word, setWord] = useState("");
+  const [gameState, setGameState] = useState({
+    word: "",
+    activeRow: 0,
+    prevWords: []
+  });
 
+  const answer = "react";
   
   function handleClick(letter) {
     switch (letter) {
       case "Enter":
-        console.log("Enter");
+        if (gameState.word.length < 5) {
+          break;
+        }
+        if (gameState.word.toLowerCase() === answer.toLowerCase()) {
+          alert("You win!");
+        } else {
+          setGameState(prevGameState => {
+            return {
+              word: "",
+              activeRow: prevGameState.activeRow + 1,
+              prevWords: [...prevGameState.prevWords, gameState.word]
+            }
+          })
+        }
         break;
       
       case "Backspace":
-        if (word.length > 0) {
-          setWord(word.slice(0, -1));
+        if (gameState.word.length > 0) {
+          setGameState(prevGameState => {
+            return {
+              ...prevGameState,
+              word: prevGameState.word.slice(0, -1)
+            }
+          })
         }
         break;
       
       default:
-        if (word.length < 5) {
-          setWord(word + letter);
+        if (gameState.word.length < 5) {
+          setGameState(prevGameState => {
+            return {
+              ...prevGameState,
+              word: prevGameState.word + letter
+            }
+          })
         }
     }
   }
@@ -29,7 +57,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Game word={word}/>
+      <Game word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords}/>
       <Keyboard func={handleClick} />
     </>
   )

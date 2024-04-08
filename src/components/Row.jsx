@@ -3,7 +3,18 @@ import Cube from './Cube';
 
 export default function Row(props) {
 
-    const letters = props.word.split("");
+    const active = props.rowNum === props.activeRow;
+    let currentWord = "";
+
+    if (props.rowNum < props.activeRow) {
+        currentWord = props.prevWords[props.rowNum];
+    } else if (props.rowNum === props.activeRow){
+        currentWord = props.word;
+    } 
+    
+    // const currentWord = props.rowNum < props.activeRow ? props.prevWords[props.rowNum] : props.word;
+    // console.log(currentWord)
+    const letters = currentWord.split("");
 
     const cubes = letters.map((letter, index) => {
         return <Cube letter={letter} key={index}/>
@@ -15,9 +26,10 @@ export default function Row(props) {
 
     return (
         <div className="flex flex-row justify-between">
-            {props.active ? cubes : cubes.map((cube, index) => {
-                return <Cube key={index}/>
-            })}
+            {/* {active ? cubes : cubes.map((cube, index) => {
+                return <Cube letter={""} key={index}/>
+            })} */}
+            {cubes}
         </div>
     )
 }
