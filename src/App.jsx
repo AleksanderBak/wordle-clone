@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar.jsx'
-import Game from './components/Game.jsx'
+import AnswerBoard from './components/AnswerBoard.jsx'
 import Keyboard from './components/Keyboard.jsx'
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Game word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords}/>
+      <AnswerBoard word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords}/>
       <Keyboard func={handleClick} />
     </>
   )

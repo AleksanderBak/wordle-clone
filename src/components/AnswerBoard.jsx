@@ -1,11 +1,11 @@
 import {React, useState} from 'react';
-import Row from './Row';
+import AnswerRow from './AnswerRow';
 
-export default function Game(props) {
+export default function AnswerBoard(props) {
     const rows = []
     
     for (let i = 0; i < 5; i++){
-        rows.push(<Row rowNum={i} key={i} activeRow={props.activeRow} word={props.word} prevWords={props.prevWords}/>)
+        rows.push(<AnswerRow rowNum={i} key={i} activeRow={props.activeRow} word={props.word} prevWords={props.prevWords}/>)
     }
 
     return (

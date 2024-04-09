@@ -1,7 +1,7 @@
 import React from 'react';
-import Cube from './Cube';
+import AnswerField from './AnswerField';
 
-export default function Row(props) {
+export default function AnswerRow(props) {
 
     const active = props.rowNum === props.activeRow;
     let currentWord = "";
@@ -17,11 +17,11 @@ export default function Row(props) {
     const letters = currentWord.split("");
 
     const cubes = letters.map((letter, index) => {
-        return <Cube letter={letter} key={index}/>
+        return <AnswerField letter={letter} key={index}/>
     })
 
     while (cubes.length < 5) {
-        cubes.push(<Cube letter="" key={cubes.length}/>)
+        cubes.push(<AnswerField letter="" key={cubes.length}/>)
     }
 
     return (
