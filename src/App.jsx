@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef} from 'react'
 import Navbar from './components/Navbar.jsx'
 import AnswerBoard from './components/AnswerBoard.jsx'
 import Keyboard from './components/Keyboard.jsx'
+import {keys} from './components/keys.js'
 
 function App() {
   const [gameState, setGameState] = useState({
@@ -12,26 +13,39 @@ function App() {
 
   const answer = "react";
   
+  
+  function handleKeyPress(event) {
+    handleClick(event.key.toUpperCase());
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress, false);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress, false);
+    }
+  }, [gameState]);
+
+
   function handleClick(letter) {
-    switch (letter) {
-      case "Enter":
+    switch (letter.toUpperCase()) {
+      case "ENTER":
         if (gameState.word.length < 5) {
           break;
         }
-        if (gameState.word.toLowerCase() === answer.toLowerCase()) {
+        if (gameState.word.toUpperCase() === answer.toUpperCase()) {
           alert("You win!");
         } else {
           setGameState(prevGameState => {
             return {
-              word: "",
               activeRow: prevGameState.activeRow + 1,
-              prevWords: [...prevGameState.prevWords, gameState.word]
+              prevWords: [...prevGameState.prevWords, gameState.word],
+              word: "",
             }
           })
         }
         break;
       
-      case "Backspace":
+      case "BACKSPACE":
         if (gameState.word.length > 0) {
           setGameState(prevGameState => {
             return {
@@ -43,22 +57,26 @@ function App() {
         break;
       
       default:
-        if (gameState.word.length < 5) {
-          setGameState(prevGameState => {
-            return {
-              ...prevGameState,
-              word: prevGameState.word + letter
-            }
-          })
+        if (keys.includes(letter)) {
+          if (gameState.word.length < 5) {
+            setGameState(prevGameState => {
+              return {
+                ...prevGameState,
+                word: prevGameState.word + letter
+              }
+            })
+          }
         }
+        break;
     }
   }
+
 
   return (
     <>
       <Navbar />
       <AnswerBoard word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords}/>
-      <Keyboard func={handleClick} />
+      <Keyboard func={handleClick} keys={keys}/>
     </>
   )
 }

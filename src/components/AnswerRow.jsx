@@ -12,24 +12,19 @@ export default function AnswerRow(props) {
         currentWord = props.word;
     } 
     
-    // const currentWord = props.rowNum < props.activeRow ? props.prevWords[props.rowNum] : props.word;
-    // console.log(currentWord)
     const letters = currentWord.split("");
 
-    const cubes = letters.map((letter, index) => {
+    const fields = letters.map((letter, index) => {
         return <AnswerField letter={letter} key={index}/>
     })
 
-    while (cubes.length < 5) {
-        cubes.push(<AnswerField letter="" key={cubes.length}/>)
+    while (fields.length < 5) {
+        fields.push(<AnswerField letter="" key={fields.length}/>)
     }
 
     return (
         <div className="flex flex-row justify-between">
-            {/* {active ? cubes : cubes.map((cube, index) => {
-                return <Cube letter={""} key={index}/>
-            })} */}
-            {cubes}
+            {fields}
         </div>
     )
 }
