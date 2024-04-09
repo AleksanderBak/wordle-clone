@@ -8,11 +8,11 @@ function App() {
   const [gameState, setGameState] = useState({
     word: "",
     activeRow: 0,
-    prevWords: []
+    prevWords: [],
+    gameRunning: true,
   });
 
   const answer = "react";
-  
   
   function handleKeyPress(event) {
     handleClick(event.key.toUpperCase());
@@ -27,47 +27,59 @@ function App() {
 
 
   function handleClick(letter) {
-    switch (letter.toUpperCase()) {
-      case "ENTER":
-        if (gameState.word.length < 5) {
-          break;
-        }
-        if (gameState.word.toUpperCase() === answer.toUpperCase()) {
-          alert("You win!");
-        } else {
-          setGameState(prevGameState => {
-            return {
-              activeRow: prevGameState.activeRow + 1,
-              prevWords: [...prevGameState.prevWords, gameState.word],
-              word: "",
-            }
-          })
-        }
-        break;
-      
-      case "BACKSPACE":
-        if (gameState.word.length > 0) {
-          setGameState(prevGameState => {
-            return {
-              ...prevGameState,
-              word: prevGameState.word.slice(0, -1)
-            }
-          })
-        }
-        break;
-      
-      default:
-        if (keys.includes(letter)) {
+    if (!gameState.gameRunning) {
+      return;
+    } else {
+      switch (letter.toUpperCase()) {
+        case "ENTER":
           if (gameState.word.length < 5) {
+            break;
+          }
+          if (gameState.word.toUpperCase() === answer.toUpperCase()) {
+            setGameState(prevGameState => {
+              return {
+                word: "",
+                activeRow: prevGameState.activeRow + 1,
+                prevWords: [...prevGameState.prevWords, gameState.word],
+                gameRunning : false,
+              }
+            })
+          } else {
             setGameState(prevGameState => {
               return {
                 ...prevGameState,
-                word: prevGameState.word + letter
+                activeRow: prevGameState.activeRow + 1,
+                prevWords: [...prevGameState.prevWords, gameState.word],
+                word: "",
               }
             })
           }
-        }
-        break;
+          break;
+        
+        case "BACKSPACE":
+          if (gameState.word.length > 0) {
+            setGameState(prevGameState => {
+              return {
+                ...prevGameState,
+                word: prevGameState.word.slice(0, -1)
+              }
+            })
+          }
+          break;
+        
+        default:
+          if (keys.includes(letter)) {
+            if (gameState.word.length < 5) {
+              setGameState(prevGameState => {
+                return {
+                  ...prevGameState,
+                  word: prevGameState.word + letter
+                }
+              })
+            }
+          }
+          break;
+      }
     }
   }
 
@@ -75,7 +87,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <AnswerBoard word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords}/>
+      <AnswerBoard word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords} answer={answer.toUpperCase()}/>
       <Keyboard func={handleClick} keys={keys}/>
     </>
   )
