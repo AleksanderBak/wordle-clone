@@ -3,16 +3,19 @@ import AnswerField from './AnswerField';
 
 export default function AnswerRow(props) {
 
-    const active = props.rowNum === props.activeRow;
+    let {rowNum, activeRow, word, prevWords, answer} = props;
+
+    const active = rowNum === activeRow;
     let currentWord = "";
     let showAnswer = false;
-    const answer = props.answer.split("");
+    
+    answer = answer.split("");
 
-    if (props.rowNum < props.activeRow) {
-        currentWord = props.prevWords[props.rowNum];
+    if (rowNum < activeRow) {
+        currentWord = prevWords[rowNum];
         showAnswer = true;
-    } else if (props.rowNum === props.activeRow){
-        currentWord = props.word;
+    } else if (rowNum === activeRow){
+        currentWord = word;
     } 
     
     const letters = currentWord.split("");

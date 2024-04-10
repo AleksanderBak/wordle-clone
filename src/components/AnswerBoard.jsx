@@ -7,8 +7,8 @@ export default function AnswerBoard(props) {
     for (let i = 0; i < 5; i++){
         rows.push(
             <AnswerRow 
-                rowNum={i} 
                 key={i} 
+                rowNum={i} 
                 activeRow={props.activeRow} 
                 word={props.word} 
                 prevWords={props.prevWords} 

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef} from 'react'
 import Navbar from './components/Navbar.jsx'
 import AnswerBoard from './components/AnswerBoard.jsx'
 import Keyboard from './components/Keyboard.jsx'
-import {keys} from './components/keys.js'
+import {keys} from './data/keys.js'
 
 function App() {
   const [gameState, setGameState] = useState({

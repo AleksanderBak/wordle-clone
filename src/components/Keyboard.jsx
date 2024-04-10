@@ -2,22 +2,23 @@ import React from "react";
 import Key from "./Key";
 
 export default function Keyboard(props) {
+    const {func, keys} = props;
     
-    const row1 = props.keys.map((key, index) => {
+    const row1 = keys.map((key, index) => {
         if (index < 10) {
-            return <Key letter={key} func={props.func} key={index}/>
+            return <Key letter={key} func={func} key={index}/>
         }
     });
 
-    const row2 = props.keys.map((key, index) => {
+    const row2 = keys.map((key, index) => {
         if (index >= 10 && index < 20) {
-            return <Key letter={key} func={props.func} key={index}/>
+            return <Key letter={key} func={func} key={index}/>
         }
     });
     
-    const row3 = props.keys.map((key, index) => {
+    const row3 = keys.map((key, index) => {
         if (index >= 20) {
-            return <Key letter={key} func={props.func} key={index}/>
+            return <Key letter={key} func={func} key={index}/>
         }
     });
 
