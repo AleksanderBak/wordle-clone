@@ -14,6 +14,12 @@ function App() {
     answer: words[Math.floor(Math.random() * words.length)]
   });
   
+  const [usedLetters, setUsedLetters] = useState({
+    incorrect: [],
+    correct: [],
+    incorrectPlace: []
+  });
+
   console.log(gameState.answer);
   
   function handleKeyPress(event) {
@@ -95,7 +101,7 @@ function App() {
     <>
       <Navbar />
       <AnswerBoard word={gameState.word} activeRow={gameState.activeRow} prevWords={gameState.prevWords} answer={gameState.answer.toUpperCase()}/>
-      <Keyboard func={handleClick} keys={keys}/>
+      <Keyboard func={handleClick} keys={keys} guessedLetters={usedLetters}/>
     </>
   )
 }
