@@ -1,18 +1,28 @@
-import React from "react";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const Key = (props) => {
-    const {func, letter} = props;
+    let bgStyle = "#818384";
+    const { func, letter, usedLetters } = props;
+
+    if (usedLetters[0].includes(letter)) {
+        bgStyle = "#538d4e";
+    } else if (usedLetters[1].includes(letter)) {
+        bgStyle = "#3a3a3c";
+    } else if (usedLetters[2].includes(letter)) {
+        bgStyle = "#b59f3b";
+    }
+
     return (
         <motion.button
             onClick={() => func(letter)}
-            className="flex justify-center items-center rounded-md font-Poppins text-xl p-3 min-w-10 h-14 m-1 text-white bg-gray-500 hover:bg-gray-400 duration-75"
-            whileHover={{backgroundColor: "#9ca3af"}}
+            style={{ backgroundColor: bgStyle }}
+            className={`flex justify-center items-center rounded-md font-Poppins text-xl p-3 min-w-10 h-14 m-1 text-white`}
+            whileHover={{ backgroundColor: "#9ca3af" }}
             duration={0.3}
         >
             {letter}
         </motion.button>
-    )
-}
+    );
+};
 
 export default Key;
