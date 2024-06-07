@@ -1,7 +1,7 @@
 function Navbar() {
     return (
-        <nav className="flex flex-row justify-center h-20 items-center border-b-2 border-solid border-gray-500">
-            <h1 className="font-Poppins text-3xl text-white line-through decoration-purple-700">
+        <nav className="flex flex-row items-center justify-center h-20 border-b-2 border-gray-500 border-solid">
+            <h1 className="text-4xl text-white line-through font-Poppins decoration-purple-700">
                 Wordle
             </h1>
         </nav>

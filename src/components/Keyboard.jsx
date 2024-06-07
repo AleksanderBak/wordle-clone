@@ -1,8 +1,22 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Key from "./Key";
 
 export default function Keyboard(props) {
+    const [lastPressed, setLastPressed] = useState("");
+
     const { func, keys, usedLetters } = props;
+
+    const handleKeyPress = (event) => {
+        const key = event.key.toUpperCase();
+        if (keys.includes(key)) {
+            setLastPressed(key);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyPress, false);
+    }, []);
+
     const row1 = keys.map((key, index) => {
         if (index < 10) {
             return (
@@ -11,6 +25,7 @@ export default function Keyboard(props) {
                     func={func}
                     key={index}
                     usedLetters={usedLetters}
+                    animatePress={lastPressed === key}
                 />
             );
         }
@@ -24,6 +39,7 @@ export default function Keyboard(props) {
                     func={func}
                     key={index}
                     usedLetters={usedLetters}
+                    animatePress={lastPressed === key}
                 />
             );
         }
@@ -37,6 +53,7 @@ export default function Keyboard(props) {
                     func={func}
                     key={index}
                     usedLetters={usedLetters}
+                    animatePress={lastPressed === key}
                 />
             );
         }

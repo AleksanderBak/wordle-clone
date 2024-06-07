@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 const AnswerField = (props) => {
-    const { letter, answer, id, setUsedLetters } = props;
+    const { letter, answer, id } = props;
     const scaleControls = useAnimation();
     let bg = "";
 
