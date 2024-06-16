@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
-const FinalAlert = (props) => {
-    const win = props.win;
-
+const FinalAlert = () => {
+    const win = useSelector((state) => state.gameState.gameWon);
     const heading = win ? "You Win" : "You Lose";
     const message = win ? "Congratulations!" : "The word was:";
 
-    const AnswerOnAlert = props.answer.split("").map((letter, index) => {
+    const answer = useSelector((state) => state.gameState.answer);
+
+    const AnswerOnAlert = answer.split("").map((letter, index) => {
         return (
             <div
                 key={index}

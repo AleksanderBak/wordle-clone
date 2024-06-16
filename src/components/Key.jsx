@@ -1,15 +1,26 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { newLetter } from "../gameStateSlice";
 
 const Key = (props) => {
-    let bgStyle = "#818384";
-    const { func, letter, usedLetters, animatePress } = props;
+    const { letter, animatePress } = props;
+    let bgStyle;
+    const dispatch = useDispatch();
 
-    if (usedLetters[0].includes(letter)) {
+    const correctLetters = useSelector(
+        (state) => state.gameState.correctLetters
+    );
+
+    const semiCorrectLetters = useSelector(
+        (state) => state.gameState.semiCorrectLetters
+    );
+
+    if (correctLetters.includes(letter)) {
         bgStyle = "#538d4e";
-    } else if (usedLetters[1].includes(letter)) {
-        bgStyle = "#3a3a3c";
-    } else if (usedLetters[2].includes(letter)) {
+    } else if (semiCorrectLetters.includes(letter)) {
         bgStyle = "#b59f3b";
+    } else {
+        bgStyle = "#818384";
     }
 
     const pressAnimation = {
@@ -19,7 +30,7 @@ const Key = (props) => {
 
     return (
         <motion.button
-            onClick={() => func(letter)}
+            onClick={() => dispatch(newLetter(letter.toUpperCase()))}
             whileTap={pressAnimation}
             style={{ backgroundColor: bgStyle }}
             className={`flex justify-center items-center rounded-md font-Poppins text-xl p-3 min-w-10 h-14 m-1 text-white`}

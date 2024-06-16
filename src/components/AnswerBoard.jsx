@@ -2,20 +2,11 @@ import { React } from "react";
 import AnswerRow from "./AnswerRow";
 import { motion } from "framer-motion";
 
-export default function AnswerBoard(props) {
+export default function AnswerBoard() {
     const rows = [];
-    const showAlert = props.showAlert;
+    const showAlert = false;
     for (let i = 0; i < 5; i++) {
-        rows.push(
-            <AnswerRow
-                key={i}
-                rowNum={i}
-                activeRow={props.activeRow}
-                word={props.word}
-                prevWords={props.prevWords}
-                answer={props.answer}
-            />
-        );
+        rows.push(<AnswerRow key={i} rowNum={i} />);
     }
 
     return (
@@ -23,7 +14,7 @@ export default function AnswerBoard(props) {
             <div className="flex justify-center align-middle">
                 {showAlert && (
                     <motion.div
-                        className="absolute bg-orange-200 mt-8 py-2 px-4 rounded-sm font-Poppins"
+                        className="absolute px-4 py-2 mt-8 bg-orange-200 rounded-sm font-Poppins"
                         animate={{ rotate: [0, 3, -3, 3, -3, 0] }}
                     >
                         Word not in dictionary

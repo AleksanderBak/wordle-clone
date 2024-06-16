@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Key from "./Key";
+import keys from "../data/keys";
 
 export default function Keyboard(props) {
     const [lastPressed, setLastPressed] = useState("");
-
-    const { func, keys, usedLetters } = props;
 
     const handleKeyPress = (event) => {
         const key = event.key.toUpperCase();
@@ -22,9 +21,7 @@ export default function Keyboard(props) {
             return (
                 <Key
                     letter={key}
-                    func={func}
                     key={index}
-                    usedLetters={usedLetters}
                     animatePress={lastPressed === key}
                 />
             );
@@ -36,9 +33,7 @@ export default function Keyboard(props) {
             return (
                 <Key
                     letter={key}
-                    func={func}
                     key={index}
-                    usedLetters={usedLetters}
                     animatePress={lastPressed === key}
                 />
             );
@@ -50,9 +45,7 @@ export default function Keyboard(props) {
             return (
                 <Key
                     letter={key}
-                    func={func}
                     key={index}
-                    usedLetters={usedLetters}
                     animatePress={lastPressed === key}
                 />
             );

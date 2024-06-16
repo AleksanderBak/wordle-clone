@@ -1,12 +1,18 @@
 import AnswerField from "./AnswerField";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const AnswerRow = (props) => {
-    let { rowNum, activeRow, word, prevWords, answer, setUsedLetters } = props;
+    let { rowNum, setUsedLetters } = props;
+
+    let word = useSelector((state) => state.gameState.word);
+    let activeRow = useSelector((state) => state.gameState.activeRow);
+    let prevWords = useSelector((state) => state.gameState.prevWords);
 
     let currentWord = "";
     let showAnswer = false;
 
+    let answer = useSelector((state) => state.gameState.answer);
     answer = answer.split("");
 
     if (rowNum < activeRow) {
